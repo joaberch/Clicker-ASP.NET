@@ -4,83 +4,124 @@
 	ViewData["Title"] = "Home page";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/site.css">
-    <script src="~/js/site.js"></script>
-</head>
+<link rel="stylesheet" href="~/css/site.css">
+<script src="~/js/site.js"></script>
 
 <body>
-    <header>
-        <h1>Clicker Game</h1>
-        <p>Joachim Berchel</p>
-        <div>
-            <a href="https://github.com/joaberch" target="_blank">
-                <img src="~/../img/GitHub_logo.png" alt="GitHub" height="30">
-            </a>
-            <a href="mailto:joachimsimeongabriel.berchel@eduvaud.ch" target="_blank">
-                <img src="../img/outlook-logo.png" alt="Outlook" height="30">
-            </a>
-        </div>
-    </header>
-    <main>
-        <div id="playground">
-            <p id="nbrClick">0</p>
-            <img src="../img/go-removebg-preview.png" alt="Golang logo clickable" width="250" onclick="clicked()"
-                 ondragstart="return false" ondrag="return false">
-            <button onclick="clicked()">click substitution</button>
-            <h2>Click!!!</h2>
-            <p id="gains">gains : 1</p>
-            <div id="shop">
-                <button onclick="moreClick(1)">+1 Click (cost 10)</button>
-                <button onclick="moreClick(10)">+10 Click (cost 100)</button>
-                <button onclick="moreClick(100)">+100 Click (cost 1'000)</button>
-                <button onclick="moreClick(1000)">+1K Click (cost 10K)</button>
-                <button onclick="moreClick(10000)">+10K Click (cost 100K)</button>
-                <button onclick="moreClick(100000)">+100K Click (cost 1M)</button>
-                <button onclick="moreClick(1000000)">+1M Click (cost 10M)</button>
-                <button onclick="moreClick(10000000)">+10M Click (cost 100M)</button>
-                <button onclick="moreClick(100000000)">+100M Click (cost 1B)</button>
-                <button onclick="moreClick(1000000000)">+1B Click (cost 10B)</button>
-                <button onclick="moreClick(10000000000)">+10B Click (cost 100B)</button>
-                <button onclick="moreClick(100000000000)">+100B Click (cost 1T)</button>
-                <button onclick="moreClick(1000000000000)">+1T Click (cost 10T)</button>
-                <button onclick="moreClick(10000000000000)">+10T Click (cost 100T)</button>
-                <button onclick="moreClick(100000000000000)">+100T Click (cost 1Q)</button>
-            </div>
-        </div>
-        <script>
-            let nbrClick = 0
-            let gains = 1
-            function clicked() {
-                nbrClick += gains;
-                let nbrDisplay;
-                
-                if (nbrClick > 999999999999999) {
-                    nbrDisplay = (nbrClick / 1000000000000000).toFixed(2) + 'Q';
-                } else if (nbrClick > 999999999999) {
-                    nbrDisplay = (nbrClick / 1000000000000).toFixed(2) + 'T';
-                } else if (nbrClick > 999999999) {
-                    nbrDisplay = (nbrClick / 1000000000).toFixed(2) + 'B';
-                } else if (nbrClick > 999999) {
-                    nbrDisplay = (nbrClick / 1000000).toFixed(2) + 'M';
-                } else if (nbrClick > 999) {
-                    nbrDisplay = (nbrClick / 1000).toFixed(2) + 'K';
-                } else {
-                    nbrDisplay = nbrClick.toString();
-                }
+	<header>
+		<h1>Clicker Game</h1>
+		<p>Joachim Berchel</p>
+		<div>
+			<a href="https://github.com/joaberch" target="_blank">
+				<img src="~/../img/GitHub_logo.png" alt="GitHub" height="30">
+			</a>
+			<a href="mailto:joachimsimeongabriel.berchel@eduvaud.ch" target="_blank">
+				<img src="../img/outlook-logo.png" alt="Outlook" height="30">
+			</a>
+		</div>
+	</header>
+	<main>
+		<div id="playground">
+			<p id="nbrClick">0</p>
+			<img src="../img/go-removebg-preview.png" alt="Golang logo clickable" width="250" onclick="clicked()"
+				 ondragstart="return false" ondrag="return false">
+			<button onclick="clicked()">click substitution</button>
+			<h2>Click!!!</h2>
+			<p id="gains">gains : 1</p>
+			<p id="restart">restart : 0</p>
+			<div id="topcorner">
+				<button class="button" onclick="moreRestart(1)">+1 restart (cost 10q)</button>
+				<button class="button" onclick="moreRestart(5)">+5 restart (cost 50q)</button>
+				<button class="button" onclick="moreRestart(10)">+10 restart (cost 100q)</button>
+				<button class="button" onclick="moreRestart(25)">+25 restart (cost 250q)</button>
+				<button class="button" onclick="moreRestart(50)">+50 restart (cost 500q)</button>
+				<button class="button" onclick="moreRestart(100)">+100 restart (cost 1Q)</button>
+				<button class="button" onclick="moreRestart(1000)">+1000 restart (cost 10Q)</button>
+				<button class="button" onclick="moreRestart(100000)">+100000 restart (cost 1s)</button>
+			</div>
+	</main>
+	<footer>
+		<div id="shop">
+			<button class="button" onclick="moreClick(1)">+1 Click (cost 10)</button>
+			<button class="button" onclick="moreClick(10)">+10 Click (cost 100)</button>
+			<button class="button" onclick="moreClick(100)">+100 Click (cost 1'000)</button>
+			<button class="button" onclick="moreClick(1000)">+1K Click (cost 10K)</button>
+			<button class="button" onclick="moreClick(10000)">+10K Click (cost 100K)</button>
+			<button class="button" onclick="moreClick(100000)">+100K Click (cost 1M)</button>
+			<button class="button" onclick="moreClick(1000000)">+1M Click (cost 10M)</button>
+			<button class="button" onclick="moreClick(10000000)">+10M Click (cost 100M)</button>
+			<button class="button" onclick="moreClick(100000000)">+100M Click (cost 1B)</button>
+			<button class="button" onclick="moreClick(1000000000)">+1B Click (cost 10B)</button>
+			<button class="button" onclick="moreClick(10000000000)">+10B Click (cost 100B)</button>
+			<button class="button" onclick="moreClick(100000000000)">+100B Click (cost 1T)</button>
+			<button class="button" onclick="moreClick(1000000000000)">+1T Click (cost 10T)</button>
+			<button class="button" onclick="moreClick(10000000000000)">+10T Click (cost 100T)</button>
+			<button class="button" onclick="moreClick(100000000000000)">+100T Click (cost 1q)</button>
+		</div>
+		<script>
+			let nbrClick = 0
+			let gains = 1
+			let nbrRestart = 1.0
+			let nbrRestartDone = 0;
 
-                document.getElementById('nbrClick').innerText = nbrDisplay
-            }
-            function moreClick(number) {
-                if (nbrClick > number * 10 - 1) {
-                    gains += number
-                    nbrClick -= number * 10
-                    document.getElementById('nbrClick').innerText = nbrClick
-                    document.getElementById('gains').innerText = 'gains : ' + gains
-                }
-            }
-        </script>
-    </main>
+			function clicked() {
+				nbrClick += gains * nbrRestart;
+
+				displayClick()
+			}
+
+			function displayClick() {
+				let nbrDisplay;
+
+				if (nbrClick > 999999999999999999999999) {
+					nbrDisplay = (nbrClick / 1000000000000000000000000).toFixed(2) + 'S';
+				}
+				else if (nbrClick > 999999999999999999999) {
+					nbrDisplay = (nbrClick / 1000000000000000000000).toFixed(2) + 's';
+				}
+				else if (nbrClick > 999999999999999999) {
+					nbrDisplay = (nbrClick / 1000000000000000000).toFixed(2) + 'Q';
+				}
+				else if (nbrClick > 999999999999999) {
+					nbrDisplay = (nbrClick / 1000000000000000).toFixed(2) + 'q';
+				} else if (nbrClick > 999999999999) {
+					nbrDisplay = (nbrClick / 1000000000000).toFixed(2) + 'T';
+				} else if (nbrClick > 999999999) {
+					nbrDisplay = (nbrClick / 1000000000).toFixed(2) + 'B';
+				} else if (nbrClick > 999999) {
+					nbrDisplay = (nbrClick / 1000000).toFixed(2) + 'M';
+				} else if (nbrClick > 999) {
+					nbrDisplay = (nbrClick / 1000).toFixed(2) + 'K';
+				} else {
+					nbrDisplay = nbrClick.toFixed(2)
+				}
+
+				document.getElementById('nbrClick').innerText = nbrDisplay
+			}
+
+			function moreClick(number) {
+				if (nbrClick > number * 10 - 1) {
+					gains += number
+					nbrClick -= number * 10
+					displayClick()
+					document.getElementById('gains').innerText = 'gains : ' + gains * nbrRestart.toFixed(2) //TODO
+				}
+			}
+
+			function moreRestart(number) {
+				if (nbrClick > number * 10000000000000000 - 1) {
+					nbrClick = 0;
+					nbrRestartDone += number;
+					gains = 1;
+					nbrRestart += number / 100
+					document.getElementById('gains').innerText = 'gains : ' + gains * nbrRestart.toFixed(2);
+					document.getElementById('restart').innerText = 'restart : ' + nbrRestartDone;
+					displayClick();
+					//TODO connect to DB and save nbr Restart
+				}
+			}
+		</script>
+	</footer>
 </body>
 
 </html>

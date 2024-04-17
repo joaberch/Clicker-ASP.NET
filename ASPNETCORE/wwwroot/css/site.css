@@ -88,8 +88,22 @@ p {
     color: rgb(51, 44, 35)
 }
 
+#topcorner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(154, 217, 234);
+    width: 20%;
+    height: 100%;
+    border-left: solid 5px red;
+
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: 1fr;
+}
+
 /*                       Snippet                              */
-#shop > button {
+.button {
     appearance: none;
     background-color: transparent;
     border: 2px solid #1A1A1A;
@@ -120,14 +134,14 @@ p {
     align-self: center;
 }
 
-    #shop > button:hover {
+    .button:hover {
         color: #fff;
         background-color: #1A1A1A;
         box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
         transform: translateY(-2px);
     }
 
-    #shop > button:active {
+    .button:active {
         box-shadow: none;
         transform: translateY(0);
     }

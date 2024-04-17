@@ -18,14 +18,30 @@ xhttp.onreadystatechange = function () {
 let nbrClick = 0
 let gains = 1
 function clicked() {
-    nbrClick += gains;
-    document.getElementById('nbrClick').innerText = nbrClick
+	nbrClick += gains;
+	let nbrDisplay;
+
+	if (nbrClick > 999999999999999) {
+		nbrDisplay = (nbrClick / 1000000000000000).toFixed(2) + 'Q';
+	} else if (nbrClick > 999999999999) {
+		nbrDisplay = (nbrClick / 1000000000000).toFixed(2) + 'T';
+	} else if (nbrClick > 999999999) {
+		nbrDisplay = (nbrClick / 1000000000).toFixed(2) + 'B';
+	} else if (nbrClick > 999999) {
+		nbrDisplay = (nbrClick / 1000000).toFixed(2) + 'M';
+	} else if (nbrClick > 999) {
+		nbrDisplay = (nbrClick / 1000).toFixed(2) + 'K';
+	} else {
+		nbrDisplay = nbrClick.toString();
+	}
+
+	document.getElementById('nbrClick').innerText = nbrDisplay
 }
 function moreClick(number) {
-    if (nbrClick > number * 10 - 1) {
-        gains += number
-        nbrClick -= number * 10
-        document.getElementById('nbrClick').innerText = nbrClick
-        document.getElementById('gains').innerText = 'gains : ' + gains
-    }
+	if (nbrClick > number * 10 - 1) {
+		gains += number
+		nbrClick -= number * 10
+		document.getElementById('nbrClick').innerText = nbrClick
+		document.getElementById('gains').innerText = 'gains : ' + gains
+	}
 }
