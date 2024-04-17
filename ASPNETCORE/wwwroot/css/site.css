@@ -61,20 +61,20 @@ header {
     align-items: center;
 }
 
-    #playground > img {
-        margin-top: 5%;
-    }
-
 main {
     height: auto;
     display: flex;
     flex-direction: column;
 }
 
+h2, p#nbrClick, p#gains, p#restart {
+    margin: 0px;
+}
+
 #shop {
     background-color: rgb(27, 173, 153);
     width: 100%;
-    height: 25%;
+    height: 20%;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -82,6 +82,10 @@ main {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
+}
+
+#topcorner>button {
+    min-height: 55px;
 }
 
 p {
@@ -102,6 +106,12 @@ p {
     grid-template-columns: 1fr;
 }
 
+button.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*                       Snippet                              */
 .button {
     appearance: none;
@@ -116,7 +126,7 @@ p {
     font-weight: 600;
     line-height: normal;
     margin: 0;
-    min-height: 55px;
+    min-height: 40px;
     min-width: 0;
     max-width: min-content;
     outline: none;
