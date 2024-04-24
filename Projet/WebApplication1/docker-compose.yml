@@ -6,3 +6,21 @@ services:
     build:
       context: .
       dockerfile: WebApplication1/Dockerfile
+    ports:
+      - "8080:80"  # Adapter le port selon votre application
+    networks:
+      - mynetwork  # Utilisation du réseau personnalisé
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      SA_PASSWORD: "VotreMotDePasse"  # Modifier avec un mot de passe sécurisé
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"  # Port par défaut de SQL Server
+    networks:
+      - mynetwork  # Utilisation du réseau personnalisé
+
+networks:
+  mynetwork:
+    driver: bridge  # Type de réseau
