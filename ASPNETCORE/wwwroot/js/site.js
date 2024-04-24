@@ -1,47 +1,71 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿//Const declaration
+const INTMILLE = 1000
+const INTMILLION = 1000000
+const INTBILLION = 1000000000
+const INTTRILLION = 1000000000000
+const INTQUATUORILLION = 1000000000000000
+const INTQUINTILLION = 1000000000000000000
+const INTSEXTILLION = 1000000000000000000000
+const INTSEPTILLION = 1000000000000000000000000
+const INTOCTILLION = 1000000000000000000000000000
 
-// Write your JavaScript code.
+let intNbrClick = 0
+let intGains = 1
+let intRestart = 1
 
-//Code
-bool boolConnectedToDB = false
+function clicked() {
+    intNbrClick += intGains * intRestart
+    displayValue(intNbrClick, "nbrClick", "")
+}
 
-let xhttp = new XMLHttpRequest();
-let url = 'https://mongodb://localhost:27017/NomDeVotreBaseDeDonnees';
-
-xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
+function moreClick(number) {
+    if (number == 2) {
+        intGains += (intNbrClick / 15)
+        intNbrClick = 0
+        displayValue(intNbrClick, "nbrClick", "")
+        displayValue(intGains, "gains", "gains : ")
+    } else if (intNbrClick > number * 10 - 1) {
+        intGains += number
+        intNbrClick -= number * 10
+        displayValue(intNbrClick, "nbrClick", "")
+        displayValue(intGains, "gains", "gains : ")
     }
 }
 
-let nbrClick = 0
-let gains = 1
-function clicked() {
-	nbrClick += gains;
-	let nbrDisplay;
-
-	if (nbrClick > 999999999999999) {
-		nbrDisplay = (nbrClick / 1000000000000000).toFixed(2) + 'Q';
-	} else if (nbrClick > 999999999999) {
-		nbrDisplay = (nbrClick / 1000000000000).toFixed(2) + 'T';
-	} else if (nbrClick > 999999999) {
-		nbrDisplay = (nbrClick / 1000000000).toFixed(2) + 'B';
-	} else if (nbrClick > 999999) {
-		nbrDisplay = (nbrClick / 1000000).toFixed(2) + 'M';
-	} else if (nbrClick > 999) {
-		nbrDisplay = (nbrClick / 1000).toFixed(2) + 'K';
-	} else {
-		nbrDisplay = nbrClick.toString();
-	}
-
-	document.getElementById('nbrClick').innerText = nbrDisplay
+function moreRestart() {
+    if (intNbrClick > (INTQUATUORILLION * 100) - 1) {
+        intRestart += (intNbrClick / (INTQUATUORILLION * 100))
+        intNbrClick = 0
+        intGains = 1
+        displayValue(intNbrClick, "nbrClick", "")
+        displayValue(intGains, "gains", "gains : ")
+        displayValue(intRestart, "restart", "restart : ")
+    }
 }
-function moreClick(number) {
-	if (nbrClick > number * 10 - 1) {
-		gains += number
-		nbrClick -= number * 10
-		document.getElementById('nbrClick').innerText = nbrClick
-		document.getElementById('gains').innerText = 'gains : ' + gains
-	}
+
+function displayValue(intValue, id, strText) {
+    let nbrDisplay;
+
+    if (intValue > INTOCTILLION - 1) {
+        nbrDisplay = (intValue / INTOCTILLION).toFixed(2) + 'o'
+    } else if (intValue > INTSEPTILLION - 1) {
+        nbrDisplay = (intValue / INTSEPTILLION).toFixed(2) + 'S';
+    } else if (intValue > INTSEXTILLION - 1) {
+        nbrDisplay = (intValue / INTSEXTILLION).toFixed(2) + 's';
+    } else if (intValue > INTQUINTILLION - 1) {
+        nbrDisplay = (intValue / INTQUINTILLION).toFixed(2) + 'Q';
+    } else if (intValue > INTQUATUORILLION - 1) {
+        nbrDisplay = (intValue / INTQUATUORILLION).toFixed(2) + 'q';
+    } else if (intValue > INTTRILLION - 1) {
+        nbrDisplay = (intValue / INTTRILLION).toFixed(2) + 'T';
+    } else if (intValue > INTBILLION - 1) {
+        nbrDisplay = (intValue / INTBILLION).toFixed(2) + 'B';
+    } else if (intValue > INTMILLION - 1) {
+        nbrDisplay = (intValue / INTMILLION).toFixed(2) + 'M';
+    } else if (intValue > INTMILLE - 1) {
+        nbrDisplay = (intValue / INTMILLE).toFixed(2) + 'K';
+    } else {
+        nbrDisplay = intValue.toFixed(2)
+    }
+    document.getElementById(id).innerText = strText + nbrDisplay
 }
