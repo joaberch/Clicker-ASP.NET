@@ -1,0 +1,156 @@
+* {
+    margin: 0px;
+    padding: 0;
+    font-family: Roboto;
+}
+
+body {
+    background-color: rgb(185, 137, 138);
+}
+
+header {
+    background-color: rgb(159, 135, 175);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 25px 50px;
+    height: 175px;
+    width: 30%;
+    margin: 0% 35%;
+    align-items: center;
+    border-radius: 0% 0% 40% 40% / 0% 0% 40% 40%;
+    border: solid black 1px;
+}
+
+    header > h1 {
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header > p {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header > div {
+        grid-column: 2;
+        grid-row: 3;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+#playground > p:first-child {
+    font-size: 50px;
+    grid-row: 1;
+}
+
+#playground {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+h2, p#nbrClick, p#gains, p#restart {
+    margin: 0px;
+}
+
+#shop {
+    background-color: rgb(27, 173, 153);
+    width: 100%;
+    height: 20%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+#topcorner > button {
+    min-height: 55px;
+    background-color: rgb(154, 217, 234);
+    margin-top: 25px;
+    margin-right: 25px;
+}
+
+p {
+    color: rgb(51, 44, 35)
+}
+
+#topcorner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: auto;
+}
+
+#topLeftCorner {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+button.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*                       Snippet                              */
+.button {
+    appearance: none;
+    background-color: transparent;
+    border: 2px solid #1A1A1A;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #3B3B3B;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0;
+    min-height: 40px;
+    min-width: 0;
+    max-width: min-content;
+    outline: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    min-width: 250px;
+    will-change: transform;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+    .button:hover {
+        color: #fff;
+        background-color: #1A1A1A;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+        transform: translateY(-2px);
+    }
+
+    .button:active {
+        box-shadow: none;
+        transform: translateY(0);
+    }
