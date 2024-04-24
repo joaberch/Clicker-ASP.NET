@@ -1,3 +1,5 @@
+using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using System.Reflection.Metadata;
 
 var builder = WebApplication.CreateBuilder(args);
