@@ -1,4 +1,5 @@
 ﻿//Const declaration
+const INTNbrAfterComma = 2
 const INTMILLE = 1000
 const INTMILLION = 1000000
 const INTBILLION = 1000000000
@@ -12,6 +13,23 @@ const INTOCTILLION = 1000000000000000000000000000
 let intNbrClick = 0
 let intGains = 1
 let intRestart = 1
+
+connectToDB();
+
+function connectToDB() {
+    // Appel d'une fonction c# pour inserer le score du joueur 
+    $.ajax({
+        type: "POST",
+        url: "/Home/InsertPlayerScore",
+        data: {
+            playerName: "1",
+            nbrRestart: 1
+        }
+    });
+
+    //Connect to database db_clicker
+    document.getElementById("currentUser").innerHTML = "TODO"
+}
 
 function clicked() {
     intNbrClick += intGains * intRestart
@@ -47,25 +65,25 @@ function displayValue(intValue, id, strText) {
     let nbrDisplay;
 
     if (intValue > INTOCTILLION - 1) {
-        nbrDisplay = (intValue / INTOCTILLION).toFixed(2) + 'o'
+        nbrDisplay = (intValue / INTOCTILLION).toFixed(INTNbrAfterComma) + 'o'
     } else if (intValue > INTSEPTILLION - 1) {
-        nbrDisplay = (intValue / INTSEPTILLION).toFixed(2) + 'S';
+        nbrDisplay = (intValue / INTSEPTILLION).toFixed(INTNbrAfterComma) + 'S';
     } else if (intValue > INTSEXTILLION - 1) {
-        nbrDisplay = (intValue / INTSEXTILLION).toFixed(2) + 's';
+        nbrDisplay = (intValue / INTSEXTILLION).toFixed(INTNbrAfterComma) + 's';
     } else if (intValue > INTQUINTILLION - 1) {
-        nbrDisplay = (intValue / INTQUINTILLION).toFixed(2) + 'Q';
+        nbrDisplay = (intValue / INTQUINTILLION).toFixed(INTNbrAfterComma) + 'Q';
     } else if (intValue > INTQUATUORILLION - 1) {
-        nbrDisplay = (intValue / INTQUATUORILLION).toFixed(2) + 'q';
+        nbrDisplay = (intValue / INTQUATUORILLION).toFixed(INTNbrAfterComma) + 'q';
     } else if (intValue > INTTRILLION - 1) {
-        nbrDisplay = (intValue / INTTRILLION).toFixed(2) + 'T';
+        nbrDisplay = (intValue / INTTRILLION).toFixed(INTNbrAfterComma) + 'T';
     } else if (intValue > INTBILLION - 1) {
-        nbrDisplay = (intValue / INTBILLION).toFixed(2) + 'B';
+        nbrDisplay = (intValue / INTBILLION).toFixed(INTNbrAfterComma) + 'B';
     } else if (intValue > INTMILLION - 1) {
-        nbrDisplay = (intValue / INTMILLION).toFixed(2) + 'M';
+        nbrDisplay = (intValue / INTMILLION).toFixed(INTNbrAfterComma) + 'M';
     } else if (intValue > INTMILLE - 1) {
-        nbrDisplay = (intValue / INTMILLE).toFixed(2) + 'K';
+        nbrDisplay = (intValue / INTMILLE).toFixed(INTNbrAfterComma) + 'K';
     } else {
-        nbrDisplay = intValue.toFixed(2)
+        nbrDisplay = intValue.toFixed(INTNbrAfterComma)
     }
-    document.getElementById(id).innerText = strText + nbrDisplay
+    document.getElementById(id).textContent = strText + nbrDisplay
 }

@@ -1,26 +1,42 @@
 version: '3.4'
 
+networks:
+  db_network: 
+    driver: bridge 
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24 
 services:
   webapplication1:
     image: ${DOCKER_REGISTRY-}webapplication1
     build:
       context: .
       dockerfile: WebApplication1/Dockerfile
-    ports:
-      - "8080:80"  # Adapter le port selon votre application
-    networks:
-      - mynetwork  # Utilisation du reseau personnalise
-
-  mysql:
-    image: mysql:latest
+    networks: 
+      db_network:
+        ipv4_address: 192.168.0.2
+    depends_on: 
+      db:
+        condition: service_healthy
+  db:
+    image: mysql/mysql-server:5.7
+    container_name: mysql1
     environment:
-      SA_PASSWORD: "root"  # Modifier avec un mot de passe securise
-      ACCEPT_EULA: "Y"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    restart: always
     ports:
-      - "3306:3306"  # Port par defaut de SQL Server
-    networks:
-      - mynetwork  # Utilisation du reseau personnalise
-
-networks:
-  mynetwork:
-    driver: bridge  # Type de reseau
+      - "3306:3306"  
+    expose:
+      - 3306 
+    volumes:
+      - "./db.sql:/tmp/db.sql"
+    networks: 
+      db_network:
+        ipv4_address: 192.168.0.10
+    command: "--init-file /tmp/db.sql"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
