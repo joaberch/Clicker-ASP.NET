@@ -9,18 +9,18 @@ services:
     ports:
       - "8080:80"  # Adapter le port selon votre application
     networks:
-      - mynetwork  # Utilisation du réseau personnalisé
+      - mynetwork  # Utilisation du reseau personnalise
 
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:latest
+  mysql:
+    image: mysql:latest
     environment:
-      SA_PASSWORD: "VotreMotDePasse"  # Modifier avec un mot de passe sécurisé
+      SA_PASSWORD: "root"  # Modifier avec un mot de passe securise
       ACCEPT_EULA: "Y"
     ports:
-      - "1433:1433"  # Port par défaut de SQL Server
+      - "3306:3306"  # Port par defaut de SQL Server
     networks:
-      - mynetwork  # Utilisation du réseau personnalisé
+      - mynetwork  # Utilisation du reseau personnalise
 
 networks:
   mynetwork:
-    driver: bridge  # Type de réseau
+    driver: bridge  # Type de reseau
