@@ -27,7 +27,7 @@ function connectToDB() {
         }
     });
 
-    document.getElementById("currentUser").innerHTML = "TODO"
+    document.getElementById("currentUser").textContent = "TODO"
 }
 
 function clicked() {
