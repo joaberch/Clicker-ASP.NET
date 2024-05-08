@@ -20,14 +20,13 @@ function connectToDB() {
     // Appel d'une fonction c# pour inserer le score du joueur 
     $.ajax({
         type: "POST",
-        url: "/Home/InsertPlayerScore",
+        url: "Home/InsertPlayerScore",
         data: {
             playerName: "1",
             nbrRestart: 1
         }
     });
 
-    //Connect to database db_clicker
     document.getElementById("currentUser").innerHTML = "TODO"
 }
 
@@ -58,6 +57,8 @@ function moreRestart() {
         displayValue(intNbrClick, "nbrClick", "")
         displayValue(intGains, "gains", "gains : ")
         displayValue(intRestart, "restart", "restart : ")
+
+        connectToDB();
     }
 }
 
