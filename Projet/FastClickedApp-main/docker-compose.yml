@@ -11,35 +11,35 @@ networks:
 
 services:
   fastclieckwebappmvc: 
-    image: ${DOCKER_REGISTRY-}fastclieckwebappmvc # Image utilise 
+    image: ${DOCKER_REGISTRY-}fastclieckwebappmvc
     build:
       context: .
-      dockerfile: FastClieckWebAppMVC/Dockerfile # Definis l endroit ou aller chercher le dockerfile
-    networks: # assigne le conteneur au reseau
+      dockerfile: FastClieckWebAppMVC/Dockerfile #Path of the Dockerfile
+    networks:
       db_network:
-        ipv4_address: 192.168.0.2 # defini son addresse IP
+        ipv4_address: 192.168.0.2 # set it's ip address
     depends_on: 
-      db: # definis la dependance du projet au conteneur DB
-        condition: service_healthy # le conteneur db doit etre allume pour se lancer 
+      db: # define the project's dependence on the DB container
+        condition: service_healthy #the db container must be switched on to be launched 
   db:
-    image: mysql/mysql-server:5.7 # definis l image a utiliser pour le conteneur 
-    container_name: mysql1 # Nom du conteneur 
-    environment: # Variables d environnement pour la configuration de MySQL
-      MYSQL_ROOT_PASSWORD: root # mdp de l utilisateur root
-      MYSQL_USER: db_user # nom de l utilisateur 
-      MYSQL_PASSWORD: db_user_pass # mdp de l utilisateur db_user
-    restart: always # redemare automatiquement le conteneur 
-    ports: # mappage sur les ports 
+    image: mysql/mysql-server:5.7 
+    container_name: mysql1 # Container's name
+    environment: # Environment variable for mysql configuration
+      MYSQL_ROOT_PASSWORD: root # root's password
+      MYSQL_USER: db_user # name of a user
+      MYSQL_PASSWORD: db_user_pass # password of a user
+    restart: always # automatically restart the application
+    ports: # map the ports 
       - "3306:3306"  
-    expose: # ouvres le port
+    expose: # open the port
       - 3306 
-    volumes: # Definis les volumes
+    volumes: # Define the volumes
       - "./data.sql:/tmp/data.sql"
     networks: 
-      db_network: # assigne le conteneur au reseau db_network
-        ipv4_address: 192.168.0.10 # Definis son addresse IP
-    command: "--init-file /tmp/data.sql" # Commande qui initialise le repertoire des donnees 
-    healthcheck: # Verifie si le conteneur est bien allume
+      db_network: # assigns the container to the db_network network
+        ipv4_address: 192.168.0.10 # Define his IP address
+    command: "--init-file /tmp/data.sql" # Command to initialise the data directory 
+    healthcheck: # Check that the container is switched on
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
-      interval: 10s # Definis l interval entre chaque verification 
-      retries: 5 # Nombre d essaies 
+      interval: 10s # Define the interval between each check
+      retries: 5 # Number of try
