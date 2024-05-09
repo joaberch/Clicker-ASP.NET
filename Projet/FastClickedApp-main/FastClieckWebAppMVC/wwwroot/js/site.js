@@ -88,3 +88,6 @@ function displayValue(intValue, id, strText) {
     }
     document.getElementById(id).textContent = strText + nbrDisplay
 }
+
+//TODO - get the nbrRestart in the database so the player can get his value
+//TODO - increment the nbr of restart in the database
