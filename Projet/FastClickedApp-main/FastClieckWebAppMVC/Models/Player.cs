@@ -2,16 +2,16 @@
 {
     public class Player
     {
-        // ID du joueur
+        // Player's id
         public int Id { get; set; }
 
-        // Pseudo du joueur 
+        // Player's username
         public string username { get; set; }
 
-        // nbr of click
+        // Player's number of click
         public int clickNbr { get; set; }
 
-        // nbr of restart
+        // Player's number of restart
         public int restartNbr { get; set; }
     }
 }

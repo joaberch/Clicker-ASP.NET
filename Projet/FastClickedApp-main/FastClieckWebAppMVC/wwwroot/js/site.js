@@ -10,6 +10,7 @@ const INTSEXTILLION = 1000000000000000000000
 const INTSEPTILLION = 1000000000000000000000000
 const INTOCTILLION = 1000000000000000000000000000
 
+//var declaration
 let intNbrClick = 0
 let intGains = 1
 let intRestart = 1
@@ -17,9 +18,9 @@ let intRestart = 1
 let strUsername = prompt("your username : ")
 connectToDB();
 
+///Connect to the database
 function connectToDB() {
-
-    // Appel d'une fonction c# pour insérer le score du joueur 
+    // Call a C# function to insert the player name in the database
     $.ajax({
         type: "POST",
         url: "Home/InsertPlayerScore",
@@ -30,18 +31,21 @@ function connectToDB() {
     document.getElementById("currentUser").textContent = strUsername
 }
 
+///When the player click the image
 function clicked() {
     intNbrClick += intGains * intRestart
     displayValue(intNbrClick, "nbrClick", "")
 }
 
+///When the player click the button to get more click
 function moreClick(number) {
+    //If he has clicked the spend all button
     if (number == 2) {
         intGains += (intNbrClick / 15)
         intNbrClick = 0
         displayValue(intNbrClick, "nbrClick", "")
         displayValue(intGains, "gains", "gains : ")
-    } else if (intNbrClick > number * 10 - 1) {
+    } else if (intNbrClick > number * 10 - 1) { //else
         intGains += number
         intNbrClick -= number * 10
         displayValue(intNbrClick, "nbrClick", "")
@@ -49,6 +53,7 @@ function moreClick(number) {
     }
 }
 
+///When the player click the restart button
 function moreRestart() {
     if (intNbrClick > (INTQUATUORILLION * 100) - 1) {
         intRestart += (intNbrClick / (INTQUATUORILLION * 100))
@@ -62,6 +67,7 @@ function moreRestart() {
     }
 }
 
+///display the number with ergonomy
 function displayValue(intValue, id, strText) {
     let nbrDisplay;
 
@@ -88,6 +94,3 @@ function displayValue(intValue, id, strText) {
     }
     document.getElementById(id).textContent = strText + nbrDisplay
 }
-
-//TODO - get the nbrRestart in the database so the player can get his value
-//TODO - increment the nbr of restart in the database
