@@ -1,4 +1,27 @@
-﻿//Const declaration
+﻿/******************************************************************************
+#** PROGRAMME  site.js                                             **
+#**                                                                           **
+#** Lieu      : ETML - section informatique                                   **
+#** Auteur    : Joachim Berchel                                               **
+#** Date      : 29.05.2024                                                    **
+#**                                                                           **
+#** Modifications                                                             **
+#**   Auteur  :                                                               **
+#**   Version :                                                               **
+#**   Date    :                                                               **
+#**   Raisons :                                                               **
+#**                                                                           **
+#**                                                                           **
+#******************************************************************************/
+
+/******************************************************************************
+#** DESCRIPTION                                                               **
+#** Application ASP de jeu de clicker                                         **     
+#**                                                                           **
+#**                                                                           **
+#******************************************************************************/
+
+//Const declaration
 const INTNbrAfterComma = 2
 const INTMILLE = 1000
 const INTMILLION = 1000000
@@ -19,7 +42,7 @@ connectToDB();
 
 function connectToDB() {
 
-    // Appel d'une fonction c# pour insérer le score du joueur 
+    // Call a c# function to insert player's score
     $.ajax({
         type: "POST",
         url: "Home/InsertPlayerScore",
@@ -30,11 +53,13 @@ function connectToDB() {
     document.getElementById("currentUser").textContent = strUsername
 }
 
+//When the user click on the image
 function clicked() {
     intNbrClick += intGains * intRestart
     displayValue(intNbrClick, "nbrClick", "")
 }
 
+//When the player buy more click
 function moreClick(number) {
     if (number == 2) {
         intGains += (intNbrClick / 15)
@@ -48,7 +73,7 @@ function moreClick(number) {
         displayValue(intGains, "gains", "gains : ")
     }
 }
-
+//When the player buy more restart
 function moreRestart() {
     if (intNbrClick > (INTQUATUORILLION * 100) - 1) {
         intRestart += (intNbrClick / (INTQUATUORILLION * 100))
@@ -61,7 +86,7 @@ function moreRestart() {
         connectToDB();
     }
 }
-
+//Display the number formated for high number
 function displayValue(intValue, id, strText) {
     let nbrDisplay;
 
