@@ -1,44 +1,46 @@
-# Choose the ASPNET image
+#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+# Choisis l'image qui sera utilisé 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 
-#Define the work repertory for the image
+# Définis le répertoire de travail pour l'image
 WORKDIR /app
 
-# Open the ports
+# Ouvre les ports
 EXPOSE 80
 EXPOSE 443
 
-# Build the container from the image
+# Contruis le conteneur à partir de l'image 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-# Define a work repertory to build the project
+# Définis le répértoir de travail pour contruire le projet 
 WORKDIR /src
 
-#Copy the csproj file in the repertory "FastClieckWebAppMVC"
+# Copie les fichier csproj dans le dossier "FastClieckWebAppMVC"
 COPY ["FastClieckWebAppMVC/FastClieckWebAppMVC.csproj", "FastClieckWebAppMVC/"]
 
-# Restore project's dependencies
+# Execute la commande pour restaurer les dépendences du projet 
 RUN dotnet restore "FastClieckWebAppMVC/FastClieckWebAppMVC.csproj"
 
-# Copy every file
+# Copie tout les fichier 
 COPY . .
 
-# Change repertory
+# Change de répéroire de travail
 WORKDIR "/src/FastClieckWebAppMVC"
 
-# Rebuild the project with it's dependencies
+# regénère le projet et l’ensemble de ses dépendances
 RUN dotnet build "FastClieckWebAppMVC.csproj" -c Release -o /app/build
 
 FROM build AS publish
 
-#Publish the application and his dependencies in a folder
+# Publie l’application et ses dépendances dans un dossier
 RUN dotnet publish "FastClieckWebAppMVC.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 
-# Change repertory
+# Change le répértoir de travail 
 WORKDIR /app
 
-# Copy published file
+# Copie les fichiers publiés
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "FastClieckWebAppMVC.dll"]
